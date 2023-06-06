@@ -1,0 +1,42 @@
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    <!-- Crea un formulario con una acción que se resolverá utilizando la URL 'polls:vote' y pasando el 'question.id' como parámetro. El método utilizado es 'post'. -->
+    {% csrf_token %}
+    <!-- Agrega un token CSRF para proteger el formulario contra ataques CSRF. -->
+        <fieldset>
+            <legend><h1>{{ question.question_text }}</h1></legend>
+            <!-- Crea una leyenda y un encabezado de nivel 1 con el texto de la pregunta -->
+            {% if error_message %}
+                <p><strong>{{ error_message }}</strong></p>
+            {% endif %}
+            <!-- Si hay un mensaje de error, se muestra en un párrafo con formato fuerte -->
+            {% for choice in question.choice_set.all %}
+                <!-- Inicia un bucle 'for' que itera sobre cada opción de la pregunta 'question' -->
+                <input 
+                type="radio"
+                name="choice"
+                id="choice{{ forloop.counter }}"
+                value="{{ choice.id }}"
+                >
+                <!-- Crea un botón de radio para seleccionar una opción de voto. El 'name' del botón de radio es "choice" y el 'id' se incrementa con cada iteración utilizando 'forloop.counter'. El 'value' del botón de radio es el 'choice.id'. -->
+                <label for="choice{{ forloop.counter }}">
+                    {{ choice.choice_text }}
+                </label>
+                <!-- Crea una etiqueta para el botón de radio que muestra el texto de la opción de voto. -->
+                <br>
+            {% endfor %}
+        </fieldset>
+        <input type="submit" value="Votar">
+        <!-- Crea un botón de envío para enviar el formulario -->
+    </form>
+    
+
+<!-- Muestra el texto de la pregunta en un encabezado de nivel 1 -->
+{% comment %} <h1>{{ question.question_text }}</h1>
+<ul>
+    <!-- Inicia un bucle 'for' que itera sobre cada opción de la pregunta 'question' -->
+    {% for choice in question.choice_set.all %}
+        <!-- Crea un elemento de lista con el texto de cada opción -->
+        <li>{{ choice.choice_text }}</li>
+    {% endfor %}
+</ul> {% endcomment %}
+<!-- Cierra la lista no ordenada -->

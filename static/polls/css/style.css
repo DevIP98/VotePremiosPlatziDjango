@@ -1,0 +1,34 @@
+/* Estilos para la lista de preguntas */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* Estilos para los enlaces de las preguntas */
+a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #e91e63;
+}
+
+/* Estilos para el mensaje de "No hay encuestas" */
+p {
+  color: #999;
+}
+
+/* Estilos para el nombre de clase "text" dentro de los elementos de lista */
+li[name="text"] {
+  font-weight: bold;
+  border-bottom: 1px solid #e91e63;
+  padding-bottom: 5px;
+}
+
+/* Otros estilos específicos que desees agregar */
